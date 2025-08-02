@@ -70,6 +70,7 @@ The `regtest.sh` script automates interactions with the running Bitcoin nodes.
 ./regtest.sh init
 ```
 Create wallets and connect the two nodes together.
+![init.png](images/init.png)
 
 #### 2. Mine BTC
 ```bash
@@ -80,6 +81,7 @@ Mine a specific number of blocks on a node.
 ```bash
 ./regtest.sh mine node1 5
 ```
+![mine.png](images/mine.png)
 
 #### 3. Send BTC
 ```bash
@@ -90,6 +92,7 @@ Send BTC from one node to another.
 ```bash
 ./regtest.sh send node1 node2 10
 ```
+![send.png](images/send.png)
 
 #### 4. Check Balance
 ```bash
@@ -100,6 +103,7 @@ Show wallet balance for a node.
 ```bash
 ./regtest.sh balance node2
 ```
+![balance.png](images/balance.png)
 
 #### 5. Executes full workflow
 ```bash
@@ -107,15 +111,19 @@ Show wallet balance for a node.
 ```
 Runs the complete flow:
 - Initialize
-- Mine 101 blocks in node1
+- Mine 101 blocks in node1 if mining reward is not enabled
 - Send 10 BTC from node1 to node2
 - Confirm transaction
+
+![full_flow.png](images/full_flow.png)
 
 #### 6. Help
 ```bash
 ./regtest.sh help
 ```
 Display help message.
+
+![help.png](images/help.png)
 
 ---
 
