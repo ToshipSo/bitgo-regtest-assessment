@@ -1,0 +1,60 @@
+name: CI/CD - Bitcoin Regtest Automation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.sh'
+      - 'docker-compose.yml'
+  pull_request:
+    paths:
+      - '**.sh'
+      - 'docker-compose.yml'
+
+jobs:
+  lint:
+    name: CI - Lint Bash and docker-compose
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Lint Bash scripts
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          check_together: true
+        env:
+          SHELLCHECK_OPTS: -e SC2086
+
+      - name: Validate docker-compose config
+        run: docker compose config
+
+  regtest:
+    name: Run regtest.sh full_flow
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Compose
+        run: |
+          docker compose version || docker-compose version
+
+      - name: Launch regtest network
+        run: docker compose up -d
+
+      - name: Wait for nodes to be ready
+        run: sleep 10
+
+      - name: Run full_flow
+        run: |
+          chmod +x ./regtest.sh
+          ./regtest.sh full_flow
+
+      - name: Teardown
+        if: always()
+        run: docker compose down
+
