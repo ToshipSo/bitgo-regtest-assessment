@@ -146,3 +146,22 @@ To stop and remove the running containers:
 docker compose down
 ```
 
+## Design Trade-offs
+
+This project intentionally simplifies certain aspects for the sake of rapid development. 
+Below are key trade-offs made:
+
+### 1. Same RPC credentials for both nodes
+**Trade-off:** Both nodes use the same `rpcuser` and `rpcpassword` values.  
+**Why:** Simplifies script development and Docker Compose setup. In a production or multi-tenant environment, 
+unique credentials per node are recommended for security and access control.
+
+### 2. Static Wallet Name (`wallet`)
+**Trade-off:** Wallet name is hardcoded.  
+**Why:** Simplifies scripting logic. Doesn't support multiple concurrent wallets out-of-the-box.
+
+### 3. Two-node only architecture
+**Trade-off:** Hardcoded to two nodes for simplicity.  
+**Why:** Focused on minimal setup for fast experimentation, it doesn't simulate full peer-to-peer network behavior.
+
+
