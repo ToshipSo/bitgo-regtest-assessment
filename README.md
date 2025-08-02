@@ -127,6 +127,22 @@ Display help message.
 
 ---
 
+## Environment Configuration (`.env`)
+
+You can configure your Bitcoin RPC credentials using a `.env` file in the project root:
+
+```
+RPCUSER=admin
+RPCPASSWORD=admin
+```
+
+These credentials are automatically loaded and used by both the `docker-compose.yml` and `regtest.sh` script.  
+If the `.env` file is missing, the script will exit with an error.
+
+To change the RPC credentials, simply update the values in `.env`.
+
+---
+
 ## CI/CD (GitHub Actions)
 
 This project includes GitHub Actions workflows to:
@@ -164,4 +180,6 @@ unique credentials per node are recommended for security and access control.
 **Trade-off:** Hardcoded to two nodes for simplicity.  
 **Why:** Focused on minimal setup for fast experimentation, it doesn't simulate full peer-to-peer network behavior.
 
-
+### 4. Using `.env` for credentials  
+**Trade-off:** Credentials are stored in a `.env` file for simplicity and committed to GitHub.  
+**Why:** This simplifies local development, testing and CI/CD workflow. In real-world scenarios, you should never commit credentials.

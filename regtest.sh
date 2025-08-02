@@ -1,9 +1,18 @@
 #!/bin/bash
 set -e
 
+# Fail if .env is missing
+if [ ! -f .env ]; then
+  echo "❌ Error: .env file not found in the current directory."
+  exit 1
+fi
+
+# Load .env variables and export them
+set -a
+. .env
+set +a
+
 # === CONFIG ===
-RPCUSER="admin"
-RPCPASSWORD="admin"
 REGTEST_OPTS="-regtest -rpcuser=$RPCUSER -rpcpassword=$RPCPASSWORD"
 
 NODE1=node1

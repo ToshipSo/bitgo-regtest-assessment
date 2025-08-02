@@ -5,8 +5,8 @@ services:
     command:
       - -regtest=1
       - -server=1
-      - -rpcuser=admin
-      - -rpcpassword=admin
+      - -rpcuser=${RPCUSER}
+      - -rpcpassword=${RPCPASSWORD}
       - -rpcallowip=0.0.0.0/0
       - -rpcbind=0.0.0.0
       - -fallbackfee=0.0002
@@ -17,8 +17,8 @@ services:
     command:
       - -regtest=1
       - -server=1
-      - -rpcuser=admin
-      - -rpcpassword=admin
+      - -rpcuser=${RPCUSER}
+      - -rpcpassword=${RPCPASSWORD}
       - -rpcallowip=0.0.0.0/0
       - -rpcbind=0.0.0.0
       - -fallbackfee=0.0002

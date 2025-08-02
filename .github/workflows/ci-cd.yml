@@ -23,7 +23,7 @@ jobs:
         with:
           check_together: true
         env:
-          SHELLCHECK_OPTS: -e SC2086
+          SHELLCHECK_OPTS: -e SC2086 -e SC1091
 
       - name: Validate docker compose config
         run: docker compose config
