@@ -3,13 +3,11 @@ name: CI/CD - Bitcoin Regtest Automation
 on:
   push:
     branches: [main]
-    paths:
-      - '**.sh'
-      - 'docker-compose.yml'
+    paths-ignore:
+      - '**.md'
   pull_request:
-    paths:
-      - '**.sh'
-      - 'docker-compose.yml'
+    paths-ignore:
+      - '**.md'
 
 jobs:
   lint:
@@ -27,7 +25,7 @@ jobs:
         env:
           SHELLCHECK_OPTS: -e SC2086
 
-      - name: Validate docker-compose config
+      - name: Validate docker compose config
         run: docker compose config
 
   regtest:
@@ -41,7 +39,7 @@ jobs:
 
       - name: Set up Docker Compose
         run: |
-          docker compose version || docker-compose version
+          docker compose version
 
       - name: Launch regtest network
         run: docker compose up -d
